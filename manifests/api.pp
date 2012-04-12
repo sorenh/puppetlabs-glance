@@ -105,4 +105,9 @@ class glance::api(
     hasrestart => true,
     subscribe  => Concat['/etc/glance/glance-api.conf'],
   }
+
+  Keystone_user_role <| title == "glance@services" |> {
+    before +> Service["glance-api"],
+    notify +> Service["glance-api"]
+  }
 }

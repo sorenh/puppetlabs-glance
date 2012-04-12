@@ -53,4 +53,8 @@ class glance::registry(
     require    => Class['glance']
   }
 
+  Keystone_user_role <| title == "glance@services" |> {
+    before +> Service["glance-registry"],
+    notify +> Service["glance-registry"]
+  }
 }

@@ -24,6 +24,7 @@ class glance::db(
     # I may want to inject some sql
     require      => Class['mysql::server'],
   }
+  -> Service <| name == "glance-registry" |>
 
   if $allowed_hosts {
      # TODO this class should be in the mysql namespace
